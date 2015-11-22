@@ -35,7 +35,7 @@ void i2c1_init(void){
 int i2c1_write(char address7b,char* pData, int nData){
 	I2C_MasterRequestConfig(I2C1, I2C_Direction_Transmitter);
 	I2C_10BitAddressingModeCmd(I2C1,DISABLE);
-	I2C_SlaveAddressConfig(I2C1,address7b);
+	I2C_SlaveAddressConfig(I2C1,address7b<<1);
 	I2C_NumberOfBytesConfig(I2C1,nData);
 	I2C_ReloadCmd(I2C1,DISABLE);
 	I2C_AutoEndCmd(I2C1, ENABLE);
@@ -52,11 +52,11 @@ int i2c1_write(char address7b,char* pData, int nData){
 			}
 		}
 	}
-	while(!I2C_GetFlagStatus(I2C1,I2C_FLAG_TC));
+	//while(!I2C_GetFlagStatus(I2C1,I2C_FLAG_TC));
 	return 1;
 }
 
-int i2c_read(char address7b,char regAddress, char* pData, int nData){
+int i2c1_read(char address7b,char regAddress, char* pData, int nData){
 	char txData[1] = {regAddress};
 	i2c1_write(address7b,txData,1);
 
