@@ -1,5 +1,6 @@
 #include "cmsis_os.h"                   // ARM::CMSIS:RTOS:Keil RTX
 #include "SerialStream_stm32f3.h"
+#include "i2c_stm32f3.h"
 
 void tarea1(void const * arguments); //tarea 1
 osThreadId  tarea1ID;	//identificador del hilo tarea 1
@@ -15,6 +16,7 @@ void tarea2Init(void);//funcion que iniciliza la tarea1
 int main(){
 	SerialUSART2 serial(9600);
 	serial.printf("\nEl dinero es dinero ara ara\n");
+	i2c1_init();
 	//User application
 	osKernelInitialize();
 	tarea1Init();
