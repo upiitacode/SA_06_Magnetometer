@@ -3,7 +3,7 @@
  * Auto generated Run-Time-Environment Component Configuration File
  *      *** Do not modify ! ***
  *
- * Project: 'Cpp_03_RTOS' 
+ * Project: 'Cpp_06_I2C' 
  * Target:  'Target 1' 
  */
 
