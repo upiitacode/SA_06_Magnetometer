@@ -2,7 +2,7 @@
 #include "delay.h"
 #include "SerialStream_stm32f3.h"
 #include "i2c_stm32f3.h"
-
+extern uint32_t SystemCoreClock;
 void tarea1(void const * arguments); //tarea 1
 osThreadId  tarea1ID;	//identificador del hilo tarea 1
 osThreadDef (tarea1,osPriorityNormal,1,0);// macro para definir tareas (aputandor de la funcion, prioridad,?,?)
@@ -29,15 +29,17 @@ int main(){
 	char txData[4];
 	char rxData[4];
 	SerialUSART2 serial(9600);
-	serial.printf("\nEl dinero es dinero ara ara\n");
+	serial.printf("\nEl dinero es dinero nano desu\n");
+	serial.printf("core speed %d\n", SystemCoreClock);
 	i2c1_init();
 	serial.printf("i2c intialized\n");
 	//User application
 	txData[0] = MPU6050_PWR_MGMT_1;
 	txData[1] = 0x00;
-	serial.printf("write result = %d\n",i2c1_write(MPU6050_ADDRESS, txData, 2));
+	serial.printf("write status = %d\n",i2c1_write(MPU6050_ADDRESS, txData, 2));
 	while(1){
 		i2c1_read(MPU6050_ADDRESS,MPU6050_AXEL_XOUT, rxData, 2);
+		serial.printf("read status = %s\n",i2c1_write(MPU6050_ADDRESS, txData, 2)? "ok": "fail");
 		serial.printf("x = %d\n", rxData[0]);
 		delay_ms(500);
 	}
