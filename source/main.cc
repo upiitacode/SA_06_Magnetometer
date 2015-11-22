@@ -26,7 +26,7 @@ void osInitAll(){
 #define MPU6050_AXEL_XOUT 0x3B
 
 int main(){
-	char txData[4];
+	int i2cStatus;
 	char rxData[4];
 	SerialUSART2 serial(9600);
 	serial.printf("\nEl dinero es dinero nano desu\n");
@@ -34,12 +34,11 @@ int main(){
 	i2c1_init();
 	serial.printf("i2c intialized\n");
 	//User application
-	txData[0] = MPU6050_PWR_MGMT_1;
-	txData[1] = 0x00;
-	serial.printf("write status = %d\n",i2c1_write(MPU6050_ADDRESS, txData, 2));
+	i2cStatus = i2c1_writeRegister(MPU6050_ADDRESS, MPU6050_PWR_MGMT_1,0x00);
+	serial.printf("write status = %s\n",i2cStatus?"ok":"fail");
 	while(1){
-		i2c1_read(MPU6050_ADDRESS,MPU6050_AXEL_XOUT, rxData, 2);
-		serial.printf("read status = %s\n",i2c1_write(MPU6050_ADDRESS, txData, 2)? "ok": "fail");
+		i2cStatus = i2c1_read(MPU6050_ADDRESS,MPU6050_AXEL_XOUT, rxData, 2);
+		serial.printf("read status = %s\n",i2cStatus?"ok":"fail");
 		serial.printf("x = %d\n", rxData[0]);
 		delay_ms(500);
 	}
