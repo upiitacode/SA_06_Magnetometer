@@ -36,16 +36,16 @@ void i2c1_init(void){
 	I2C_Cmd(I2C1, ENABLE);
 }
 
-int i2c1_write(char address7b, char regAddress, char* pData, int nData){
+int i2c1_write(unsigned char address7b, unsigned char regAddress, unsigned char* pData, int nData){
 	return i2c1_writeRaw(address7b,regAddress,pData,nData,1);
 }
 
-int i2c1_writeRegister(char address7b, char regAddress, char data){
-	char txData[1] = {data};
+int i2c1_writeRegister(unsigned char address7b, unsigned char regAddress, unsigned char data){
+	unsigned char txData[1] = {data};
 	return i2c1_writeRaw(address7b,regAddress,txData,1,1);
 }
 
-int i2c1_writeRaw(char address7b,char regAddress,char* pData, int nData,int useRegAddress){
+int i2c1_writeRaw(unsigned char address7b,unsigned char regAddress,unsigned char* pData, int nData,int useRegAddress){
 	// Set i2c in tramission mode
 	I2C_MasterRequestConfig(I2C1, I2C_Direction_Transmitter);
 	I2C_10BitAddressingModeCmd(I2C1,DISABLE);
@@ -90,7 +90,7 @@ int i2c1_writeRaw(char address7b,char regAddress,char* pData, int nData,int useR
 	return I2C_STATUS_SUCCESS;
 }
 
-int i2c1_read(char address7b,char regAddress, char* pData, int nData){
+int i2c1_read(unsigned char address7b,unsigned char regAddress, unsigned char* pData, int nData){
 	// Wait while busy
 	while(I2C_GetFlagStatus(I2C1,I2C_FLAG_BUSY));
 
@@ -174,16 +174,16 @@ void i2c2_init(void){
 	I2C_Cmd(I2C2, ENABLE);
 }
 
-int i2c2_write(char address7b, char regAddress, char* pData, int nData){
+int i2c2_write(unsigned char address7b, unsigned char regAddress, unsigned char* pData, int nData){
 	return i2c2_writeRaw(address7b,regAddress,pData,nData,1);
 }
 
-int i2c2_writeRegister(char address7b, char regAddress, char data){
-	char txData[1] = {data};
+int i2c2_writeRegister(unsigned char address7b, unsigned char regAddress, unsigned char data){
+	unsigned char txData[1] = {data};
 	return i2c2_writeRaw(address7b,regAddress,txData,1,1);
 }
 
-int i2c2_writeRaw(char address7b,char regAddress,char* pData, int nData,int useRegAddress){
+int i2c2_writeRaw(unsigned char address7b,unsigned char regAddress,unsigned char* pData, int nData,int useRegAddress){
 	// Set i2c in tramission mode
 	I2C_MasterRequestConfig(I2C2, I2C_Direction_Transmitter);
 	I2C_10BitAddressingModeCmd(I2C2,DISABLE);
@@ -228,7 +228,7 @@ int i2c2_writeRaw(char address7b,char regAddress,char* pData, int nData,int useR
 	return I2C_STATUS_SUCCESS;
 }
 
-int i2c2_read(char address7b,char regAddress, char* pData, int nData){
+int i2c2_read(unsigned char address7b,unsigned char regAddress, unsigned char* pData, int nData){
 	// Wait while busy
 	while(I2C_GetFlagStatus(I2C2,I2C_FLAG_BUSY));
 
@@ -315,16 +315,16 @@ void i2c3_init(void){
 	I2C_Cmd(I2C3, ENABLE);
 }
 
-int i2c3_write(char address7b, char regAddress, char* pData, int nData){
+int i2c3_write(unsigned char address7b, unsigned char regAddress, unsigned char* pData, int nData){
 	return i2c3_writeRaw(address7b,regAddress,pData,nData,1);
 }
 
-int i2c3_writeRegister(char address7b, char regAddress, char data){
-	char txData[1] = {data};
+int i2c3_writeRegister(unsigned char address7b, unsigned char regAddress, unsigned char data){
+	unsigned char txData[1] = {data};
 	return i2c3_writeRaw(address7b,regAddress,txData,1,1);
 }
 
-int i2c3_writeRaw(char address7b,char regAddress,char* pData, int nData,int useRegAddress){
+int i2c3_writeRaw(unsigned char address7b,unsigned char regAddress,unsigned char* pData, int nData,int useRegAddress){
 	// Set i2c in tramission mode
 	I2C_MasterRequestConfig(I2C3, I2C_Direction_Transmitter);
 	I2C_10BitAddressingModeCmd(I2C3,DISABLE);
@@ -369,7 +369,7 @@ int i2c3_writeRaw(char address7b,char regAddress,char* pData, int nData,int useR
 	return I2C_STATUS_SUCCESS;
 }
 
-int i2c3_read(char address7b,char regAddress, char* pData, int nData){
+int i2c3_read(unsigned char address7b,unsigned char regAddress, unsigned char* pData, int nData){
 	// Wait while busy
 	while(I2C_GetFlagStatus(I2C3,I2C_FLAG_BUSY));
 
