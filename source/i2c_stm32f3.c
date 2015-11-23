@@ -159,7 +159,7 @@ void i2c2_init(void){
 	myGPIO.GPIO_OType = GPIO_OType_OD;
 	GPIO_Init(GPIOA, &myGPIO);
 
-	GPIO_PinAFConfig(GPIOA,GPIO_PinSource8, GPIO_AF_4);
+	GPIO_PinAFConfig(GPIOA,GPIO_PinSource10, GPIO_AF_4);
 	GPIO_PinAFConfig(GPIOA,GPIO_PinSource9, GPIO_AF_4);
 
 	// Configure I2C
@@ -296,13 +296,12 @@ void i2c3_init(void){
 	myGPIO.GPIO_PuPd = GPIO_PuPd_NOPULL;
 	myGPIO.GPIO_OType = GPIO_OType_OD;
 	GPIO_Init(GPIOC, &myGPIO);
+	GPIO_PinAFConfig(GPIOC,GPIO_PinSource9, GPIO_AF_3);
 
 	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA,ENABLE);
 	myGPIO.GPIO_Pin = GPIO_Pin_8;
 	GPIO_Init(GPIOA, &myGPIO);
-
-	GPIO_PinAFConfig(GPIOA,GPIO_PinSource8, GPIO_AF_4);
-	GPIO_PinAFConfig(GPIOA,GPIO_PinSource9, GPIO_AF_4);
+	GPIO_PinAFConfig(GPIOA,GPIO_PinSource8, GPIO_AF_3);
 
 	// Configure I2C
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C3, ENABLE);
