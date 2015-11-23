@@ -25,6 +25,15 @@ int i2c2_writeRegister(char address7b, char regAddress, char data);
 
 int i2c2_read(char address7b,char regAddress, char* pData, int nData);
 
+void i2c3_init(void);
+
+int i2c3_writeRaw(char address7b,char regAddress, char* pData, int nData, int useRegAddress);
+
+int i2c3_write(char address7b,char regAddress, char* pData, int nData);
+
+int i2c3_writeRegister(char address7b, char regAddress, char data);
+
+int i2c3_read(char address7b,char regAddress, char* pData, int nData);
 
 #ifdef __cplusplus
 }
